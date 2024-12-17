@@ -1,0 +1,9 @@
+Project_2 Project Explanation
+
+In main, the threads are created and passed a struct in the fourth argument.
+This struct represents an individual player (thread) and holds data that is important 
+for a thread to have. 
+
+The logic is built so that the same sport doesn't play back to back which prevents 
+one sport from dominating the field. All of the threads are awakened at the same 
+time so that they have equal chance to grab the field. We use mutexes like playerLock mutexField mutexGeneral and lockTryToJoinField
