@@ -1,0 +1,77 @@
+Questions: 
+The instructions say "each process's page table must be stored in the memory array"
+How does this work, because my understanding of the project is that the physical memory
+is divded into 4, 16 byte frames and that represents the virtual memory, so where 
+how do I store the page table in there as well?
+
+Do I need to create mask in order to get the VPN from the virtual address or is 
+the VPN(va) thing already doing that? 
+VPN(va) is found in memsim.h 
+
+// Do I need to bitmask for VPN and Offset
+	int VPN_MASK = 0x30; // binary 110000
+	int OFFSET_MASK = 0xf; // binary 001111 
+	int my_VPN = (va & VPN_MASK) >> 4;
+	int my_OFFSET = (va & OFFSET_MASK) << 2; 
+
+Once we create a PTE, how does it get to the page table??
+aka how do we put the PTE struct into the array?
+
+How do I get the desired page table based on the the PID that I am given?
+Most of the page table functions have a get function for the physical memory.
+
+Where am I creating each page table for each process?
+What function within pagetable.c does this go?
+Is it global? - I don't think this is correct
+
+
+
+
+VPN = Virtual Page Number
+
+
+"Really the only thing you're gonna do in the translation part is select
+the first couple bits and put it through this mapping mechanism. That is only the bits
+that change to the physical address."
+
+THIS WILL BE PASSED AT COMMAND LINE: 
+
+     0            1                   2          3
+process_id, instruction_type, virtual_address, value
+
+
+MEMORY MANAGER: 
+Must be able to handle the following instructions:
+- Map
+- Store
+- Load
+
+PAGE TABLE:
+Page table is some kind of array
+Index of array is the VIRTUAl page number, 
+The value at the index is the PHYSICAl frame where the address is actually stored.
+
+
+To represent Virtual address:
+2 bits for VPN
+4 bits for offset
+
+
+Physical Memory Size = Virtual Memory Size = 64 bytes 
+Page Size = 16 bytes
+2 bits are needed to index into page table (only 4 pages)
+7 bits are needed to represent offset into a page
+1 byte  = 2^3 * 16
+          2^3 * 2^4
+        = 2 ^ 7
+
+The physical memory is split into 4 fixed - size pages
+
+page table is stored in physical memory as 16 bytes (1 page)
+
+Current Questions:
+PT_GetRootPtrReg...
+Is this function called whenever we need to know where the page table is?
+If so isn't it called many many times? -> 
+
+
