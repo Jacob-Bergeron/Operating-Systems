@@ -5,4 +5,5 @@ Topics Discussed in this class:
 - CPU scheduling
 - Threads/Threading
 - Mutual Exclusion
+- Semaphores
 - Caching
